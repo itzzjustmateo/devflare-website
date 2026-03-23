@@ -1,58 +1,134 @@
 import Link from "next/link";
+import Image from "next/image";
+import { PuzzleIcon, ServerIcon, Globe2Icon, SparklesIcon } from "lucide-react";
+import { Button } from "@/components/ui/button";
+
+const features = [
+	{
+		icon: (
+			<PuzzleIcon
+				size={24}
+				strokeWidth={2}
+				className="text-white"
+				aria-label="Minecraft Plugins Feature Icon"
+			/>
+		),
+		title: "Minecraft Plugins",
+		desc: "Unique and custom Minecraft plugins — enhance gameplay, improve mechanics, and deliver new experiences for your community.",
+	},
+	{
+		icon: (
+			<ServerIcon
+				size={24}
+				strokeWidth={2}
+				className="text-white"
+				aria-label="Minecraft Servers Feature Icon"
+			/>
+		),
+		title: "Minecraft Server Projects",
+		desc: "Engaging server-side development: minigames, gamemodes, tools, events, and technical server optimizations — not hosting.",
+	},
+	{
+		icon: (
+			<Globe2Icon
+				size={24}
+				strokeWidth={2}
+				className="text-white"
+				aria-label="Websites Feature Icon"
+			/>
+		),
+		title: "Web & App Development",
+		desc: "Sleek, performant sites and bespoke interfaces. We create custom UIs, dashboards, control panels, and web tools tailored to your needs.",
+	},
+	{
+		icon: (
+			<SparklesIcon
+				size={24}
+				strokeWidth={2}
+				className="text-white"
+				aria-label="Custom Software Feature Icon"
+			/>
+		),
+		title: "Custom Solutions & Integrations",
+		desc: "From bots to automation, Discord integrations to mods — we solve tough software problems and build what others can't.",
+	},
+];
 
 export default function HomePage() {
 	return (
-		<main className="min-h-screen flex items-center justify-center bg-neutral-950 text-neutral-100 px-6">
-			<div className="max-w-2xl w-full text-center space-y-10">
-				{/* Logo / Name */}
-				<h1 className="text-5xl md:text-7xl font-extrabold tracking-tight mb-2">
-					DevFlare
-				</h1>
-				{/* Subtitle */}
-				<p className="text-neutral-300 text-lg md:text-2xl font-medium italic max-w-xl mx-auto">
-					Blazing fast, future-proof web experiences with Next.js, TailwindCSS &amp; thoughtful design.
-				</p>
-				{/* CTA Buttons */}
-				<div className="flex flex-wrap items-center justify-center gap-5 pt-6">
+		<main className="min-h-screen bg-black px-0 font-sans flex flex-col items-center justify-start">
+			{/* Hero Section with styling to match Navbar */}
+			<section className="w-full max-w-3xl mx-auto text-center flex flex-col items-center justify-center mt-12 mb-24 px-6">
+				<div className="flex flex-col items-center mb-9">
 					<Link
-						href="#projects"
-						className="px-7 py-3 rounded-2xl font-semibold border border-neutral-700 hover:bg-neutral-900 transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:ring-2 focus-visible:ring-neutral-300"
+						href="/"
+						className="flex items-center gap-2 font-extrabold text-lg md:text-xl tracking-tight mb-5 transition focus:outline-none"
+						aria-label="DevFlare Home"
 					>
-						View Projects
+						<Image
+							src="/logo.svg"
+							alt="DevFlare Logo"
+							width={48}
+							height={48}
+							className="inline-block"
+							priority
+						/>
+						<span className="hidden sm:inline text-white text-xl md:text-2xl font-extrabold tracking-tight">
+							DevFlare
+						</span>
 					</Link>
-					<Link
-						href="#contact"
-						className="px-7 py-3 rounded-2xl border border-neutral-700 font-medium hover:bg-neutral-900 transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:ring-2 focus-visible:ring-neutral-300"
-					>
-						Contact Us
-					</Link>
+					<h1 className="text-white text-4xl sm:text-6xl md:text-7xl font-extrabold tracking-tight mb-4">
+						Ideas. Code. <span className="text-primary">Delivered</span>
+					</h1>
+					<p className="text-neutral-400 text-lg md:text-xl max-w-xl mx-auto font-normal mb-7">
+						A passionate <span className="text-white/90 font-semibold">development team</span> creating custom software,
+						websites, and gaming projects.<br className="hidden md:inline" />
+						<span className="text-white/80">
+							Tell us your vision — we build it, from prototype to production.
+						</span>
+					</p>
+					<Button size="lg">Start a Project</Button>
 				</div>
-				{/* Quick About Section */}
-				<div className="mt-6 text-neutral-400 text-md md:text-lg max-w-xl mx-auto">
-					<span className="font-semibold text-neutral-200">Why DevFlare?</span>
-					<br />
-					We craft performant, accessible sites and apps, specializing in intuitive
-					UIs and robust backend integration — for startups, creators, and ambitious companies.
+			</section>
+
+			{/* Features Grid */}
+			<section className="w-full max-w-4xl pb-10 px-6">
+				<div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
+					{features.map((feature) => (
+						<div
+							key={feature.title}
+							className="flex items-start gap-4 border border-neutral-800 bg-black/60 rounded-xl p-6 shadow-md hover:shadow-lg hover:border-white/40 transition-colors"
+						>
+							<div className="shrink-0 bg-black border border-neutral-800 rounded-lg p-2 flex items-center justify-center">
+								{feature.icon}
+							</div>
+							<div>
+								<h3 className="font-extrabold text-lg md:text-xl text-white mb-1 tracking-tight">
+									{feature.title}
+								</h3>
+								<p className="text-neutral-400 text-sm md:text-base">
+									{feature.desc}
+								</p>
+							</div>
+						</div>
+					))}
 				</div>
-				{/* Footer */}
-				<footer className="pt-10 text-neutral-600 text-sm flex flex-col items-center gap-1">
-					<span>
-						© {new Date().getFullYear()} DevFlare &mdash; All rights reserved.
-					</span>
-					<Link
-						href="https://github.com/IMDevFlare"
-						target="_blank"
-						className="inline-flex items-center gap-1 text-neutral-400 hover:text-white underline underline-offset-2 transition-colors"
-						aria-label="DevFlare GitHub"
-					>
-						<svg width="18" height="18" className="inline" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-							<title>GitHub</title>
-							<path fill="currentColor" d="M12 2C6.48 2 2 6.58 2 12.22c0 4.46 2.87 8.26 6.84 9.6.5.09.68-.22.68-.48 0-.24-.01-.87-.01-1.7-2.78.62-3.37-1.36-3.37-1.36-.45-1.17-1.1-1.48-1.1-1.48-.9-.64.07-.63.07-.63 1 .08 1.53 1.04 1.53 1.04.89 1.57 2.33 1.12 2.9.86.09-.65.35-1.12.64-1.37-2.22-.26-4.56-1.14-4.56-5.06 0-1.12.38-2.04 1-2.76-.1-.26-.44-1.3.09-2.7 0 0 .83-.27 2.73 1.02A9.38 9.38 0 0 1 12 6.67c.84.004 1.68.12 2.46.35 1.9-1.29 2.73-1.02 2.73-1.02.54 1.4.2 2.44.1 2.7.62.72 1 1.64 1 2.76 0 3.93-2.34 4.8-4.57 5.05.36.32.68.95.68 1.91 0 1.38-.01 2.48-.01 2.82 0 .27.18.58.69.48A10.04 10.04 0 0 0 22 12.22C22 6.58 17.52 2 12 2Z"/>
-						</svg>
-						GitHub
-					</Link>
-				</footer>
-			</div>
+			</section>
+
+			{/* Footer */}
+			<footer className="w-full flex flex-col items-center pt-10 pb-4 border-t border-neutral-800 mt-auto bg-black">
+				<span className="text-neutral-600 text-xs mb-1">
+					© {new Date().getFullYear()} DevFlare. All rights reserved.
+				</span>
+				<Link
+					href="https://github.com/IMDevFlare"
+					target="_blank"
+					className="text-neutral-500 hover:text-white underline underline-offset-2 transition text-xs"
+					aria-label="DevFlare GitHub"
+				>
+					GitHub
+				</Link>
+			</footer>
 		</main>
 	);
 }
